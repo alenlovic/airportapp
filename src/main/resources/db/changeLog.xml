@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!-- Airlines Table -->
+    <changeSet id="createAirlinesTable" author="alen">
+        <createTable tableName="airlines">
+            <column name="airline_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="airline_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <!-- Airports Table -->
+    <changeSet id="createAirportsTable" author="alen">
+        <createTable tableName="airports">
+            <column name="airport_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="airport_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <!-- Passengers Table -->
+    <changeSet id="createPassengersTable" author="alen">
+        <createTable tableName="passengers">
+            <column name="passenger_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <!-- Flights Table -->
+    <changeSet id="createFlightsTable" author="alen">
+        <createTable tableName="flights">
+            <column name="flight_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="departure_airport_id" type="BIGINT">
+                <constraints foreignKeyName="fk_flight_departure_airport" references="airports(airport_id)" nullable="false"/>
+            </column>
+            <column name="arrival_airport_id" type="BIGINT">
+                <constraints foreignKeyName="fk_flight_arrival_airport" references="airports(airport_id)" nullable="false"/>
+            </column>
+            <column name="departure_time" type="TIMESTAMP"/>
+            <column name="arrival_time" type="TIMESTAMP"/>
+            <column name="airline_id" type="BIGINT">
+                <constraints foreignKeyName="fk_flight_airline" references="airlines(airline_id)" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!-- Tickets Table -->
+    <changeSet id="createTicketsTable" author="alen">
+        <createTable tableName="tickets">
+            <column name="ticket_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="passenger_id" type="BIGINT">
+                <constraints foreignKeyName="fk_ticket_passenger" references="passengers(passenger_id)" nullable="false"/>
+            </column>
+            <column name="flight_id" type="BIGINT">
+                <constraints foreignKeyName="fk_ticket_flight" references="flights(flight_id)" nullable="false"/>
+            </column>
+            <column name="seat_number" type="VARCHAR(255)"/>
+            <column name="ticket_price" type="VARCHAR(255)"/>
+            <column name="purchase_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <!-- Reservations Table -->
+    <changeSet id="createReservationsTable" author="alen">
+        <createTable tableName="reservations">
+            <column name="reservation_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ticket_id" type="BIGINT">
+                <constraints foreignKeyName="fk_reservation_ticket" references="tickets(ticket_id)" nullable="false"/>
+            </column>
+            <column name="reservation_date_from" type="TIMESTAMP"/>
+            <column name="reservation_date_to" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <!-- Payments Table -->
+    <changeSet id="createPaymentsTable" author="alen">
+        <createTable tableName="payments">
+            <column name="payment_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ticket_id" type="BIGINT">
+                <constraints foreignKeyName="fk_payment_ticket" references="tickets(ticket_id)" nullable="false"/>
+            </column>
+            <column name="payment_date" type="TIMESTAMP"/>
+            <column name="payment_amount" type="VARCHAR(255)"/>
+            <column name="payment_method" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_auto_increment_to_id" author="alen">
+        <addAutoIncrement tableName="airlines" columnName="airline_id"/>
+    </changeSet>
+
+    <changeSet id="sequence_gen_airline" author="alen">
+        <createSequence
+                sequenceName="airline_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_airport" author="alen">
+        <createSequence
+                sequenceName="airport_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_flight" author="alen">
+        <createSequence
+                sequenceName="flight_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_passenger" author="alen">
+        <createSequence
+                sequenceName="passenger_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_payment" author="alen">
+        <createSequence
+                sequenceName="payment_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_reservation" author="alen">
+        <createSequence
+                sequenceName="reservation_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+    <changeSet id="sequence_gen_ticket" author="alen">
+        <createSequence
+                sequenceName="ticket_sequence"
+                incrementBy="1"
+                minValue="1"
+                maxValue="100000"
+                startValue="1"
+                cycle="false" />
+    </changeSet>
+
+
+
+
+</databaseChangeLog>
