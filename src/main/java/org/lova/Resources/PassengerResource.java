@@ -25,14 +25,14 @@ public class PassengerResource {
     public void createPassenger(PassengerDTO passengerDTO){ passengerService.createPassenger(passengerDTO);}
 
     @GET
-    @Path("/getById/{Id}")
+    @Path("/getById/{id}")
     @Produces("application/json")
-    public PassengerDTO getPassengerById(@PathParam("Id")Long Id){return passengerService.getPassengerById(Id);}
+    public PassengerDTO getPassengerById(@PathParam("id")Long id){return passengerService.getPassengerById(id);}
 
     @DELETE
-    @Path("/delete/{Id}")
+    @Path("/delete/{id}")
     @Produces("application/json")
-    public void deletePassenger(@PathParam("Id")Long passengerId){passengerService.deletePassengerId(passengerId);}
+    public void deletePassenger(@PathParam("id")Long passengerId){passengerService.deletePassengerId(passengerId);}
 
     @GET
     @Path("/getByFirstName/{firstName}")
@@ -49,12 +49,10 @@ public class PassengerResource {
     }
 
     @PUT
-    @Path("/update/{Id}")
+    @Path("/update/{id}")
     @Consumes("application/json")
-    public void updatePassenger(@PathParam("Id")Long Id, PassengerUpdateDTO passengerUpdateDTO){
-        passengerRepository.updatePassenger(passengerUpdateDTO.getOldFirstName(), passengerUpdateDTO.getNewFirstName(),
-                passengerUpdateDTO.getOldLastName(), passengerUpdateDTO.getNewLastName(), passengerUpdateDTO.getOldEmailAddress(),
-                passengerUpdateDTO.getNewEmailAddress(), passengerUpdateDTO.getOldPhoneNumber(), passengerUpdateDTO.getNewPhoneNumber());
+    public void updatePassenger(@PathParam("id")Long id, PassengerUpdateDTO passengerUpdateDTO){
+        passengerRepository.updatePassenger(id, passengerUpdateDTO);
     }
 
 

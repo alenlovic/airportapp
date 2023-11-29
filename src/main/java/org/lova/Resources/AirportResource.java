@@ -24,10 +24,10 @@ public class AirportResource {
     public void createAirport(AirportDTO airportDTO){ airportService.createAirport(airportDTO);}
 
     @GET
-    @Path("/getById/{Id}")
+    @Path("/getById/{id}")
     @Produces("application/json")
-    public AirportDTO getAirportById(@PathParam("Id")Long Id){
-        return airportService.getAirportById(Id);
+    public AirportDTO getAirportById(@PathParam("id")Long id){
+        return airportService.getAirportById(id);
     }
 
     @GET

@@ -3,11 +3,9 @@ package org.lova.Repositories;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.criteria.*;
-import org.lova.Models.AirlineEntity;
+import org.lova.DTO.PassengerUpdateDTO;
 import org.lova.Models.PassengerEntity;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @ApplicationScoped
 public class PassengerRepository implements PanacheRepositoryBase<PassengerEntity, Long> {
@@ -50,39 +48,29 @@ public class PassengerRepository implements PanacheRepositoryBase<PassengerEntit
         return getEntityManager().createQuery(query).getSingleResult();
     }
 
-    public void updatePassenger(String oldFirstName, String newFirstName, String oldLastName, String newLastName,
-                                String oldEmailAddress, String newEmailAddress, String oldPhoneNumber, String newPhoneNumber){
+    public void updatePassenger(Long id, PassengerUpdateDTO passengerUpdateDTO){
 
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaUpdate <PassengerEntity> criteriaUpdate = builder.createCriteriaUpdate(PassengerEntity.class);
         Root <PassengerEntity> root = criteriaUpdate.from(PassengerEntity.class);
 
+        criteriaUpdate.where(builder.equal(root.get("passengerId"), id));
 
-        List<Predicate> predicates = new ArrayList<>();
-
-        if (oldFirstName != null) {
-            predicates.add(builder.equal(root.get("firstName"), oldFirstName));
-            criteriaUpdate.set(root.get("firstName"), newFirstName);
+        if (passengerUpdateDTO.getOldFirstName() != null) {
+            criteriaUpdate.set(root.get("firstName"), passengerUpdateDTO.getNewFirstName());
         }
 
-        if (oldLastName != null) {
-            predicates.add(builder.equal(root.get("lastName"), oldLastName));
-            criteriaUpdate.set(root.get("lastName"), newLastName);
+        if (passengerUpdateDTO.getOldFirstName() != null) {
+            criteriaUpdate.set(root.get("lastName"), passengerUpdateDTO.getNewLastName());
         }
 
-        if (oldEmailAddress != null) {
-            predicates.add(builder.equal(root.get("email"), oldEmailAddress));
-            criteriaUpdate.set(root.get("email"), newEmailAddress);
+        if (passengerUpdateDTO.getOldEmailAddress() != null) {
+            criteriaUpdate.set(root.get("email"), passengerUpdateDTO.getNewEmailAddress());
         }
 
-        if (oldPhoneNumber != null) {
-            predicates.add(builder.equal(root.get("phoneNumber"), oldPhoneNumber));
-            criteriaUpdate.set(root.get("phoneNumber"), newPhoneNumber);
+        if (passengerUpdateDTO.getOldPhoneNumber() != null) {
+            criteriaUpdate.set(root.get("phoneNumber"), passengerUpdateDTO.getNewPhoneNumber());
         }
-
-        Predicate finalCondition = builder.and(predicates.toArray(new Predicate[0]));
-
-        criteriaUpdate.where(finalCondition);
 
         getEntityManager().createQuery(criteriaUpdate).executeUpdate();
     }
