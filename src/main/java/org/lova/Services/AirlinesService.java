@@ -24,6 +24,7 @@ public class AirlinesService {
     public AirlinesDTO getAirlineById(Long airlineId) {
         AirlineEntity airline = repo.getAirlineById(airlineId);
         AirlinesDTO airlinesDTO = new AirlinesDTO();
+        airlinesDTO.setAirlineId(airline.getAirlineId());
         airlinesDTO.setAirlineName(airline.getAirlineName());
 
         return airlinesDTO;

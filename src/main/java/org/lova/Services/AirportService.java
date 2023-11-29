@@ -23,6 +23,7 @@ public class AirportService {
     public AirportDTO getAirportById(Long airportId){
         AirportEntity airport = repo.getAirportById(airportId);
         AirportDTO airportDTO = new AirportDTO();
+        airportDTO.setAirportId(airport.getAirportId());
         airportDTO.setAirportName(airport.getAirportName());
 
         return airportDTO;

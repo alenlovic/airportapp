@@ -6,6 +6,9 @@ import jakarta.persistence.criteria.*;
 import org.lova.Models.AirlineEntity;
 import org.lova.Models.PassengerEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ApplicationScoped
 public class PassengerRepository implements PanacheRepositoryBase<PassengerEntity, Long> {
 
@@ -49,21 +52,37 @@ public class PassengerRepository implements PanacheRepositoryBase<PassengerEntit
 
     public void updatePassenger(String oldFirstName, String newFirstName, String oldLastName, String newLastName,
                                 String oldEmailAddress, String newEmailAddress, String oldPhoneNumber, String newPhoneNumber){
+
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaUpdate <PassengerEntity> criteriaUpdate = builder.createCriteriaUpdate(PassengerEntity.class);
         Root <PassengerEntity> root = criteriaUpdate.from(PassengerEntity.class);
 
-        criteriaUpdate.where(builder.equal(root.get("firstName"), oldFirstName));
-        criteriaUpdate.set(root.get("firstName"), newFirstName);
 
-        criteriaUpdate.where(builder.equal(root.get("lastName"), oldLastName));
-        criteriaUpdate.set(root.get("lastName"), newLastName);
+        List<Predicate> predicates = new ArrayList<>();
 
-        criteriaUpdate.where(builder.equal(root.get("email"), oldEmailAddress));
-        criteriaUpdate.set(root.get("email"), newEmailAddress);
+        if (oldFirstName != null) {
+            predicates.add(builder.equal(root.get("firstName"), oldFirstName));
+            criteriaUpdate.set(root.get("firstName"), newFirstName);
+        }
 
-        criteriaUpdate.where(builder.equal(root.get("phoneNumber"), oldPhoneNumber));
-        criteriaUpdate.set(root.get("phoneNumber"), newPhoneNumber);
+        if (oldLastName != null) {
+            predicates.add(builder.equal(root.get("lastName"), oldLastName));
+            criteriaUpdate.set(root.get("lastName"), newLastName);
+        }
+
+        if (oldEmailAddress != null) {
+            predicates.add(builder.equal(root.get("email"), oldEmailAddress));
+            criteriaUpdate.set(root.get("email"), newEmailAddress);
+        }
+
+        if (oldPhoneNumber != null) {
+            predicates.add(builder.equal(root.get("phoneNumber"), oldPhoneNumber));
+            criteriaUpdate.set(root.get("phoneNumber"), newPhoneNumber);
+        }
+
+        Predicate finalCondition = builder.and(predicates.toArray(new Predicate[0]));
+
+        criteriaUpdate.where(finalCondition);
 
         getEntityManager().createQuery(criteriaUpdate).executeUpdate();
     }

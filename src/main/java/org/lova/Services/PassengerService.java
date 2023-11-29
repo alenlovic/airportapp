@@ -25,6 +25,7 @@ public class PassengerService {
     public PassengerDTO getPassengerById(Long Id){
         PassengerEntity passenger = repo.getPassengerById(Id);
         PassengerDTO passengerDTO = new PassengerDTO();
+        passengerDTO.setPassengerId(passenger.getPassengerId());
         passengerDTO.setFirstName(passenger.getFirstName());
         passengerDTO.setLastName(passenger.getLastName());
         passengerDTO.setEmail(passenger.getEmail());
@@ -57,6 +58,8 @@ public class PassengerService {
 
         return passengerDTO;
     }
+
+
 
 
 }
