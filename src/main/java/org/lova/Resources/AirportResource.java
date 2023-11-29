@@ -5,6 +5,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import org.lova.DTO.AirportDTO;
+import org.lova.DTO.AirportUpdateDTO;
+import org.lova.Repositories.AirportRepository;
 import org.lova.Services.AirportService;
 
 @Path("/airport")
@@ -13,6 +15,8 @@ import org.lova.Services.AirportService;
 public class AirportResource {
     @Inject
     AirportService airportService;
+    @Inject
+    AirportRepository airportRepository;
 
     @POST
     @Path("/create")
@@ -25,4 +29,24 @@ public class AirportResource {
     public AirportDTO getAirportById(@PathParam("Id")Long Id){
         return airportService.getAirportById(Id);
     }
+
+    @GET
+    @Path("/getAirportByName/{airportName}")
+    @Produces("application/json")
+    public AirportDTO getAirportByName(@PathParam("airportName")String airportName){
+        return airportService.getAirportByName(airportName);
+    }
+
+    @DELETE
+    @Path("/delete/{Id}")
+    @Produces("application/json")
+    public void deleteAirport(@PathParam("Id")Long airportId){ airportRepository.deleteAirport(airportId);}
+
+    @PUT
+    @Path("/update/{Id}")
+    @Consumes("application/json")
+    public void updateAirport(@PathParam("Id")Long Id, AirportUpdateDTO airportUpdateDTO){
+        airportRepository.updateAirport(airportUpdateDTO.getOldAirportName(), airportUpdateDTO.getNewAirportName());
+    }
+
 }

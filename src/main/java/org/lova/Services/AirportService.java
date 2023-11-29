@@ -28,4 +28,13 @@ public class AirportService {
 
         return airportDTO;
     }
+
+    public AirportDTO getAirportByName(String airportName){
+        AirportEntity airport = repo.getAirportByName(airportName);
+        AirportDTO airportDTO = new AirportDTO();
+        airportDTO.setAirportId(airport.getAirportId());
+        airportDTO.setAirportName(airport.getAirportName());
+
+        return airportDTO;
+    }
 }

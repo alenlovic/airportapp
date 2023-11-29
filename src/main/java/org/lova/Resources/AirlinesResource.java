@@ -50,10 +50,12 @@ public class AirlinesResource {
     }
 
     @PUT
-    @Path("/update")
+    @Path("/update/{Id}")
     @Consumes("application/json")
-    public void updateAirline(AirlineUpdateDTO airlineUpdateDTO){
+    public void updateAirline(@PathParam("Id")Long Id, AirlineUpdateDTO airlineUpdateDTO){
         airlinesRepository.updateAirline(airlineUpdateDTO.getOldName(), airlineUpdateDTO.getNewName());
     }
+
+
 
 }

@@ -43,15 +43,19 @@ public class PassengerResource {
 
     @GET
     @Path("/getByEmailAddress/{email}")
+    @Produces("application/json")
     public PassengerDTO getPassengerByEmailAddress(@PathParam("email")String email){
         return passengerService.getPassengerByEmailAddress(email);
     }
 
     @PUT
-    @Path("/update")
-    public void updatePassenger(PassengerUpdateDTO passengerUpdateDTO){
+    @Path("/update/{Id}")
+    @Consumes("application/json")
+    public void updatePassenger(@PathParam("Id")Long Id, PassengerUpdateDTO passengerUpdateDTO){
         passengerRepository.updatePassenger(passengerUpdateDTO.getOldFirstName(), passengerUpdateDTO.getNewFirstName(),
                 passengerUpdateDTO.getOldLastName(), passengerUpdateDTO.getNewLastName(), passengerUpdateDTO.getOldEmailAddress(),
                 passengerUpdateDTO.getNewEmailAddress(), passengerUpdateDTO.getOldPhoneNumber(), passengerUpdateDTO.getNewPhoneNumber());
     }
+
+
 }
