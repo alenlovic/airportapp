@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import org.lova.DTO.ReservationDTO;
+import org.lova.DTO.ReservationUpdateDTO;
 import org.lova.Repositories.ReservationRepository;
 import org.lova.Services.ReservationService;
 
@@ -15,7 +16,6 @@ public class ReservationResource {
 
     @Inject
     ReservationService reservationService;
-
     @Inject
     ReservationRepository reservationRepository;
 
@@ -28,4 +28,11 @@ public class ReservationResource {
     @Path("/getById/{id}")
     @Produces("application/json")
     public ReservationDTO getReservationById(@PathParam("id") Long id){return reservationService.getReservationById(id);}
+
+    @PUT
+    @Path("/update/{id}")
+    @Consumes("application/json")
+    public void updateReservation(@PathParam("id")Long id, ReservationUpdateDTO reservationUpdateDTO){
+        reservationRepository.updateReservation(id, reservationUpdateDTO);
+    }
 }
