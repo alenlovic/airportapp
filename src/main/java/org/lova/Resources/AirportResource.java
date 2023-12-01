@@ -9,6 +9,8 @@ import org.lova.DTO.AirportUpdateDTO;
 import org.lova.Repositories.AirportRepository;
 import org.lova.Services.AirportService;
 
+import java.util.List;
+
 @Path("/airport")
 @Transactional
 @ApplicationScoped
@@ -49,4 +51,8 @@ public class AirportResource {
         airportRepository.updateAirport(airportUpdateDTO.getOldAirportName(), airportUpdateDTO.getNewAirportName());
     }
 
+    @GET
+    @Path("/getList")
+    @Consumes("application/json")
+    public List<AirportDTO> getAirportList() { return airportService.getAirportList(); }
 }

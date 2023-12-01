@@ -64,13 +64,16 @@
             <column name="flight_id" type="BIGINT">
                 <constraints foreignKeyName="fk_ticket_flight" references="flights(flight_id)" nullable="false"/>
             </column>
+            <column name="reservation_id" type="BIGINT">
+                <constraints foreignKeyName="fk_ticket_reservation" references="reservations(reservation_id)" nullable="false"/>
+            </column>
             <column name="seat_number" type="VARCHAR(255)"/>
             <column name="ticket_price" type="VARCHAR(255)"/>
             <column name="purchase_date" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
     <!-- Reservations Table -->
-    <changeSet id="createReservationsTable" author="alen">
+    <changeSet id="createReservationsTables" author="alen">
         <createTable tableName="reservations">
             <column name="reservation_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
@@ -170,8 +173,6 @@
                 startValue="1"
                 cycle="false" />
     </changeSet>
-
-
 
 
 </databaseChangeLog>

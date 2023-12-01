@@ -4,9 +4,10 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.lova.DTO.AirlinesDTO;
 import org.lova.DTO.AirportDTO;
-import org.lova.Models.AirlineEntity;
 import org.lova.Models.AirportEntity;
 import org.lova.Repositories.AirportRepository;
+
+import java.util.List;
 
 @ApplicationScoped
 public class AirportService {
@@ -36,5 +37,11 @@ public class AirportService {
         airportDTO.setAirportName(airport.getAirportName());
 
         return airportDTO;
+    }
+
+    public List<AirportDTO> getAirportList(){
+        List<AirportEntity> airportList = repo.getAirportList();
+        return airportList.stream()
+                .map(airportEntity -> {return new AirportDTO(airportEntity.getAirportId(), airportEntity.getAirportName());}).toList();
     }
 }

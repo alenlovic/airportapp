@@ -8,6 +8,8 @@ import org.lova.DTO.AirportDTO;
 import org.lova.Models.AirlineEntity;
 import org.lova.Models.AirportEntity;
 
+import java.util.List;
+
 @ApplicationScoped
 public class AirportRepository implements PanacheRepositoryBase<AirportEntity, Long> {
 
@@ -51,6 +53,13 @@ public class AirportRepository implements PanacheRepositoryBase<AirportEntity, L
         getEntityManager().createQuery(update).executeUpdate();
     }
 
+    public List<AirportEntity> getAirportList(){
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery <AirportEntity> query = builder.createQuery(AirportEntity.class);
+        query.from(AirportEntity.class);
+
+        return getEntityManager().createQuery(query).getResultList();
+    }
 
 
 }

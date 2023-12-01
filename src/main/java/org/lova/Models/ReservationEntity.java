@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "reservations")
 @Entity
@@ -24,9 +26,8 @@ public class ReservationEntity {
     private Long reservationId;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private TicketEntity ticketEntityId;
+    @OneToMany(mappedBy = "reservation")
+    private List<TicketEntity> ticketEntityId = new ArrayList<>();
 
     @NotNull
     @Column(name = "reservation_date_from")

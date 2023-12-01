@@ -13,8 +13,8 @@ public class ReservationService {
 
     public void createReservation(ReservationDTO reservationDTO){
         ReservationEntity reservation = new ReservationEntity();
-        reservation.setReservationDateFrom(reservation.getReservationDateFrom());
-        reservation.setReservationDateTo(reservation.getReservationDateTo());
+        reservation.setReservationDateFrom(reservationDTO.getReservationDateFrom());
+        reservation.setReservationDateTo(reservationDTO.getReservationDateTo());
         repo.createReservation(reservation);
     }
 
@@ -25,7 +25,6 @@ public class ReservationService {
         reservationDTO.setReservationDateTo(reservation.getReservationDateTo());
         return reservationDTO;
     }
-
 
 
 

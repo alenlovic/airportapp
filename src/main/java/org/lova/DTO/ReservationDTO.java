@@ -12,7 +12,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class ReservationDTO {
     private Long reservationId;
-    private TicketEntity flightId;
     private Timestamp reservationDateFrom;
     private Timestamp reservationDateTo;
 }

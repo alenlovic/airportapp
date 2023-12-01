@@ -14,7 +14,7 @@ import org.lova.Services.AirlinesService;
 import java.util.List;
 
 @ApplicationScoped
-@Path("/airlines")
+@Path("/airline")
 @Transactional
 public class AirlinesResource {
 
@@ -54,6 +54,13 @@ public class AirlinesResource {
     @Consumes("application/json")
     public void updateAirline(@PathParam("Id")Long Id, AirlineUpdateDTO airlineUpdateDTO){
         airlinesRepository.updateAirline(airlineUpdateDTO.getOldName(), airlineUpdateDTO.getNewName());
+    }
+
+    @GET
+    @Path("/getList")
+    @Produces("application/json")
+    public List<AirlinesDTO> getAirlinesList(){
+        return airlinesService.getAirlinesList();
     }
 
 

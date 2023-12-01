@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 
 @Data
 public class ReservationUpdateDTO {
-    private TicketEntity ticketId;
     private Timestamp oldReservationDateFrom;
     private Timestamp newReservationDateFrom;
     private Timestamp oldReservationDateTo;

@@ -33,6 +33,11 @@ public class TicketEntity {
     private FlightEntity flightEntityId;
 
     @NotNull
+    @ManyToOne
+    @JoinColumn(name = "reservation_id")
+    private ReservationEntity reservation;
+
+    @NotNull
     @Column(name = "seat_number")
     private String seatNumber;
 

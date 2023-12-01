@@ -6,7 +6,9 @@ import org.lova.DTO.AirlinesDTO;
 import org.lova.Models.AirlineEntity;
 import org.lova.Repositories.AirlinesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class AirlinesService {
@@ -41,5 +43,18 @@ public class AirlinesService {
         return airlinesDTO;
     }
 
-    // public List<AirlinesDTO> getAirlinesList(Long airlineId, String airlineName){}
+    public List<AirlinesDTO> getAirlinesList(){
+
+        List<AirlineEntity> airlinesList = repo.getAirlineList();
+        return airlinesList.stream()
+                .map(airlineEntity -> {return new AirlinesDTO(airlineEntity.getAirlineId(),airlineEntity.getAirlineName());}).toList();
+
+    }
+
+    //stream api
+    //method references
+    //lambda functions
+    //Optional...
+
+
 }
