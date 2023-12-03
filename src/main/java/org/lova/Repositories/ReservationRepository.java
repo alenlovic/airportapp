@@ -40,5 +40,4 @@ public class ReservationRepository implements PanacheRepositoryBase<ReservationE
 
         getEntityManager().createQuery(update).executeUpdate();
     }
-
 }

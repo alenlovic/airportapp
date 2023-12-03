@@ -55,6 +55,7 @@
     <!-- Tickets Table -->
     <changeSet id="createTicketsTable" author="alen">
         <createTable tableName="tickets">
+            <!-- Define columns and constraints for the tickets table -->
             <column name="ticket_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -65,16 +66,18 @@
                 <constraints foreignKeyName="fk_ticket_flight" references="flights(flight_id)" nullable="false"/>
             </column>
             <column name="reservation_id" type="BIGINT">
-                <constraints foreignKeyName="fk_ticket_reservation" references="reservations(reservation_id)" nullable="false"/>
+                <!-- No foreign key constraint here for now -->
             </column>
             <column name="seat_number" type="VARCHAR(255)"/>
             <column name="ticket_price" type="VARCHAR(255)"/>
             <column name="purchase_date" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
+
     <!-- Reservations Table -->
     <changeSet id="createReservationsTables" author="alen">
         <createTable tableName="reservations">
+            <!-- Define columns for the reservations table -->
             <column name="reservation_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -83,7 +86,15 @@
             </column>
             <column name="reservation_date_from" type="TIMESTAMP"/>
             <column name="reservation_date_to" type="TIMESTAMP"/>
+            <!-- Foreign key constraint moved to its own changeSet -->
         </createTable>
+    </changeSet>
+
+    <!-- Add Foreign Key Constraint for Tickets Table -->
+    <changeSet id="addForeignKeyForTickets" author="alen">
+        <addForeignKeyConstraint baseTableName="tickets" baseColumnNames="reservation_id"
+                                 constraintName="fk_ticket_reservation" referencedTableName="reservations"
+                                 referencedColumnNames="reservation_id"/>
     </changeSet>
     <!-- Payments Table -->
     <changeSet id="createPaymentsTable" author="alen">
