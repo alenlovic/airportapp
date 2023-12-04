@@ -25,12 +25,12 @@ public class TicketEntity {
     @NotNull
     @OneToOne
     @JoinColumn(name = "passenger_id")
-    private PassengerEntity passengerEntityId;
+    private PassengerEntity passenger;
 
     @NotNull
     @OneToOne
     @JoinColumn(name = "flight_id")
-    private FlightEntity flightEntityId;
+    private FlightEntity flight;
 
     @NotNull
     @ManyToOne

@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
+import org.lova.DTO.ReservationCreateDTO;
 import org.lova.DTO.ReservationDTO;
 import org.lova.DTO.ReservationUpdateDTO;
 import org.lova.Repositories.ReservationRepository;
@@ -22,7 +23,7 @@ public class ReservationResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createReservation(ReservationDTO reservationDTO){reservationService.createReservation(reservationDTO);}
+    public void createReservation(ReservationCreateDTO reservationCreateDTO){reservationService.createReservation(reservationCreateDTO);}
 
     @GET
     @Path("/getById/{id}")

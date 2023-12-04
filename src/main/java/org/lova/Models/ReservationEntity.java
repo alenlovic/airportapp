@@ -27,7 +27,7 @@ public class ReservationEntity {
 
     @NotNull
     @OneToMany(mappedBy = "reservation")
-    private List<TicketEntity> ticketEntityId = new ArrayList<>();
+    private List<TicketEntity> tickets = new ArrayList<>();
 
     @NotNull
     @Column(name = "reservation_date_from")
