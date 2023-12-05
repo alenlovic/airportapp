@@ -42,7 +42,7 @@ public class FlightEntity {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "airline_id")
-    private AirlineEntity airlineEntityId;
+    private AirlineEntity airlineEntity;
 
 }
 

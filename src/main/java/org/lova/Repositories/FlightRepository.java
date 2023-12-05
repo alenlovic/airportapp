@@ -9,6 +9,9 @@ import org.lova.Models.FlightEntity;
 
 @ApplicationScoped
 public class FlightRepository implements PanacheRepositoryBase<FlightEntity, Long>{
+
+    public void createFlight(FlightEntity flightEntity){getEntityManager().persist(flightEntity);}
+
     public FlightEntity getFlightById(Long id){
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery <FlightEntity> query = builder.createQuery(FlightEntity.class);
