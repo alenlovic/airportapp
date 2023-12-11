@@ -24,12 +24,12 @@ public class FlightEntity {
 
     @ManyToOne
     @JoinColumn(name = "departure_airport_id")
-    private AirportEntity departureAirportEntity;
+    private AirportEntity departureAirport;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "arrival_airport_id")
-    private AirportEntity arrivalAirportEntity;
+    private AirportEntity arrivalAirport;
 
     @NotNull
     @Column(name = "departure_time")
@@ -42,7 +42,7 @@ public class FlightEntity {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "airline_id")
-    private AirlineEntity airlineEntity;
+    private AirlineEntity airline;
 
 }
 

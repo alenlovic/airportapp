@@ -10,6 +10,8 @@ import org.lova.Repositories.AirlinesRepository;
 import org.lova.Repositories.AirportRepository;
 import org.lova.Repositories.FlightRepository;
 
+import java.util.List;
+
 @ApplicationScoped
 public class FlightService {
 
@@ -28,10 +30,16 @@ public class FlightService {
         AirportEntity airportDepartureEntity = airportRepository.getAirportById(flightDTO.getDepartureAirportId());
         flightEntity.setArrivalTime(flightDTO.getArrivalTime());
         flightEntity.setDepartureTime(flightDTO.getDepartureTime());
-        flightEntity.setDepartureAirportEntity(airportDepartureEntity);
-        flightEntity.setArrivalAirportEntity(airportArrivalEntity);
-        flightEntity.setAirlineEntity(airlineEntity);
+        flightEntity.setDepartureAirport(airportDepartureEntity);
+        flightEntity.setArrivalAirport(airportArrivalEntity);
+        flightEntity.setAirline(airlineEntity);
 
         flightRepository.createFlight(flightEntity);
+    }
+
+    public List<FlightDTO> getFlightsList(){
+        List<FlightEntity> flightsList = flightRepository.getFlightsList();
+        return flightsList.stream()
+                .map(flightEntity -> {return new FlightDTO(flightEntity.getFlightId(), flightEntity.getDepartureAirport().getAirportId(), flightEntity.getArrivalAirport().getAirportId(), flightEntity.getAirline().getAirlineId(), flightEntity.getDepartureTime(), flightEntity.getArrivalTime());}).toList();
     }
 }

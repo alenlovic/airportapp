@@ -7,6 +7,8 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.lova.Models.FlightEntity;
 
+import java.util.List;
+
 @ApplicationScoped
 public class FlightRepository implements PanacheRepositoryBase<FlightEntity, Long>{
 
@@ -19,4 +21,13 @@ public class FlightRepository implements PanacheRepositoryBase<FlightEntity, Lon
 
         return getEntityManager().createQuery(query).getSingleResult();
     }
+
+    public List<FlightEntity> getFlightsList(){
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery <FlightEntity> query = builder.createQuery(FlightEntity.class);
+        query.from(FlightEntity.class);
+
+        return getEntityManager().createQuery(query).getResultList();
+    }
+
 }
