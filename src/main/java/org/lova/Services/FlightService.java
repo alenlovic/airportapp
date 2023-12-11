@@ -37,6 +37,22 @@ public class FlightService {
         flightRepository.createFlight(flightEntity);
     }
 
+    public FlightDTO getFlightById(Long flightId){
+        FlightEntity flightEntity = flightRepository.getFlightById(flightId);
+        FlightDTO flightDTO = new FlightDTO();
+
+        flightDTO.setFlightId(flightEntity.getFlightId());
+        flightDTO.setAirlineId(flightEntity.getAirline().getAirlineId());
+        flightDTO.setDepartureAirportId(flightEntity.getDepartureAirport().getAirportId());
+        flightDTO.setArrivalAirportId(flightEntity.getArrivalAirport().getAirportId());
+        flightDTO.setDepartureTime(flightEntity.getDepartureTime());
+        flightDTO.setArrivalTime(flightEntity.getArrivalTime());
+
+        return flightDTO;
+    }
+
+    public void deleteFlight(Long id) {flightRepository.deleteFlight(id);}
+
     public List<FlightDTO> getFlightsList(){
         List<FlightEntity> flightsList = flightRepository.getFlightsList();
         return flightsList.stream()

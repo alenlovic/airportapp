@@ -19,5 +19,4 @@ public class FlightDTO {
     private Long airlineId;
     private Timestamp departureTime;
     private Timestamp arrivalTime;
-
 }
