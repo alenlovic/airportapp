@@ -32,7 +32,9 @@ public class AirlinesService {
         return airlinesDTO;
     }
 
-    public void deleteAirline(Long airlineId) { repo.deleteAirline(airlineId); }
+    public void deleteAirline(Long airlineId) {
+        repo.deleteAirline(airlineId);
+    }
 
     public AirlinesDTO getAirlineByName(String airlineName) {
         AirlineEntity airline = repo.getAirlineByName(airlineName);
@@ -43,11 +45,14 @@ public class AirlinesService {
         return airlinesDTO;
     }
 
-    public List<AirlinesDTO> getAirlinesList(){
+    public List<AirlinesDTO> getAirlinesList() {
 
         List<AirlineEntity> airlinesList = repo.getAirlineList();
         return airlinesList.stream()
-                .map(airlineEntity -> {return new AirlinesDTO(airlineEntity.getAirlineId(),airlineEntity.getAirlineName());}).toList();
+                .map(airlineEntity -> {
+                    return new AirlinesDTO(airlineEntity.getAirlineId(),
+                                           airlineEntity.getAirlineName());
+                }).toList();
 
     }
 

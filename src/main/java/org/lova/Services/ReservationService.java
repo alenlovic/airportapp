@@ -24,7 +24,7 @@ public class ReservationService {
     @Inject
     TicketRepository ticketRepo;
 
-    public void createReservation(ReservationCreateDTO reservationCreateDTO){
+    public void createReservation(ReservationCreateDTO reservationCreateDTO) {
         ReservationEntity reservation = new ReservationEntity();
         TicketEntity ticket = new TicketEntity();
         PassengerEntity passenger = new PassengerEntity();
@@ -48,15 +48,13 @@ public class ReservationService {
         reservationRepo.createReservation(reservation);
     }
 
-    public ReservationDTO getReservationById(Long id){
+    public ReservationDTO getReservationById(Long id) {
         ReservationEntity reservation = reservationRepo.getReservationById(id);
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setReservationDateFrom(reservation.getReservationDateFrom());
         reservationDTO.setReservationDateTo(reservation.getReservationDateTo());
         return reservationDTO;
     }
-
-
 
 
 }

@@ -22,36 +22,42 @@ public class PassengerResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createPassenger(PassengerDTO passengerDTO){ passengerService.createPassenger(passengerDTO);}
+    public void createPassenger(PassengerDTO passengerDTO) {
+        passengerService.createPassenger(passengerDTO);
+    }
 
     @GET
     @Path("/getById/{id}")
     @Produces("application/json")
-    public PassengerDTO getPassengerById(@PathParam("id")Long id){return passengerService.getPassengerById(id);}
+    public PassengerDTO getPassengerById(@PathParam("id") Long id) {
+        return passengerService.getPassengerById(id);
+    }
 
     @DELETE
     @Path("/delete/{id}")
     @Produces("application/json")
-    public void deletePassenger(@PathParam("id")Long passengerId){passengerService.deletePassengerId(passengerId);}
+    public void deletePassenger(@PathParam("id") Long passengerId) {
+        passengerService.deletePassengerId(passengerId);
+    }
 
     @GET
     @Path("/getByFirstName/{firstName}")
     @Produces("application/json")
-    public PassengerDTO getPassengerByFirstName(@PathParam("firstName")String firstName){
+    public PassengerDTO getPassengerByFirstName(@PathParam("firstName") String firstName) {
         return passengerService.getPassengerByFirstName(firstName);
     }
 
     @GET
     @Path("/getByEmailAddress/{email}")
     @Produces("application/json")
-    public PassengerDTO getPassengerByEmailAddress(@PathParam("email")String email){
+    public PassengerDTO getPassengerByEmailAddress(@PathParam("email") String email) {
         return passengerService.getPassengerByEmailAddress(email);
     }
 
     @PUT
     @Path("/update/{id}")
     @Consumes("application/json")
-    public void updatePassenger(@PathParam("id")Long id, PassengerUpdateDTO passengerUpdateDTO){
+    public void updatePassenger(@PathParam("id") Long id, PassengerUpdateDTO passengerUpdateDTO) {
         passengerRepository.updatePassenger(id, passengerUpdateDTO);
     }
 

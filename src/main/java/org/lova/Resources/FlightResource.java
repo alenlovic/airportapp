@@ -21,21 +21,28 @@ public class FlightResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createFlight(FlightDTO flightDTO){flightService.createFlight(flightDTO);
+    public void createFlight(FlightDTO flightDTO) {
+        flightService.createFlight(flightDTO);
     }
 
     @GET
     @Path("/getFlightById/{id}")
     @Produces("application/json")
-    public FlightDTO getFlightById(@PathParam("id")Long id){ return flightService.getFlightById(id);}
+    public FlightDTO getFlightById(@PathParam("id") Long id) {
+        return flightService.getFlightById(id);
+    }
 
     @GET
     @Path("/getFlightList")
     @Consumes("application/json")
-    public List<FlightDTO> getFlightList(FlightDTO flightDTO){ return flightService.getFlightsList();}
+    public List<FlightDTO> getFlightList(FlightDTO flightDTO) {
+        return flightService.getFlightsList();
+    }
 
     @DELETE
     @Path("/deleteFlight/{id}")
     @Consumes("application/json")
-    public void deleteFlight(@PathParam("id")Long id){ flightService.deleteFlight(id);}
+    public void deleteFlight(@PathParam("id") Long id) {
+        flightService.deleteFlight(id);
+    }
 }

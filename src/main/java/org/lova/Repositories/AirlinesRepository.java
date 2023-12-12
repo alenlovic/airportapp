@@ -16,15 +16,16 @@ import java.util.List;
 public class AirlinesRepository implements PanacheRepositoryBase<AirlineEntity, Long> {
 
 
-    public void createAirline(AirlineEntity airlineEntity){
+    public void createAirline(AirlineEntity airlineEntity) {
         getEntityManager().persist(airlineEntity);
     }
 
-    public AirlineEntity getAirlineById(Long airlineId){
+    public AirlineEntity getAirlineById(Long airlineId) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery <AirlineEntity> query = builder.createQuery(AirlineEntity.class);
-        Root <AirlineEntity> root = query.from(AirlineEntity.class);
-        query.where(builder.equal(root.get("airlineId"), airlineId));
+        CriteriaQuery<AirlineEntity> query = builder.createQuery(AirlineEntity.class);
+        Root<AirlineEntity> root = query.from(AirlineEntity.class);
+        query.where(builder.equal(root.get("airlineId"),
+                                  airlineId));
 
         return getEntityManager().createQuery(query).getSingleResult();
     }
@@ -32,15 +33,16 @@ public class AirlinesRepository implements PanacheRepositoryBase<AirlineEntity, 
     public void deleteAirline(Long airlineId) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaDelete<AirlineEntity> delete = builder.createCriteriaDelete(AirlineEntity.class);
-        Root <AirlineEntity> root = delete.from(AirlineEntity.class);
-        delete.where(builder.equal(root.get("airlineId"), airlineId));
+        Root<AirlineEntity> root = delete.from(AirlineEntity.class);
+        delete.where(builder.equal(root.get("airlineId"),
+                                   airlineId));
 
         getEntityManager().createQuery(delete).executeUpdate();
     }
 
-    public List<AirlineEntity> getAirlineList(){
+    public List<AirlineEntity> getAirlineList() {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery <AirlineEntity> query = builder.createQuery(AirlineEntity.class);
+        CriteriaQuery<AirlineEntity> query = builder.createQuery(AirlineEntity.class);
         query.from(AirlineEntity.class);
 
         return getEntityManager().createQuery(query).getResultList();
@@ -49,17 +51,17 @@ public class AirlinesRepository implements PanacheRepositoryBase<AirlineEntity, 
 
     public AirlineEntity getAirlineByName(String airlineName) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery <AirlineEntity> query = builder.createQuery(AirlineEntity.class);
-        Root <AirlineEntity> root = query.from(AirlineEntity.class);
+        CriteriaQuery<AirlineEntity> query = builder.createQuery(AirlineEntity.class);
+        Root<AirlineEntity> root = query.from(AirlineEntity.class);
         query.where(builder.equal(root.get("airlineName"), airlineName));
 
         return getEntityManager().createQuery(query).getSingleResult();
     }
 
-    public void updateAirline(String oldName, String newName){
+    public void updateAirline(String oldName, String newName) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaUpdate<AirlineEntity> updateData = builder.createCriteriaUpdate(AirlineEntity.class);
-        Root <AirlineEntity> root = updateData.from(AirlineEntity.class);
+        Root<AirlineEntity> root = updateData.from(AirlineEntity.class);
 
         updateData.where(builder.equal(root.get("airlineName"), oldName));
         updateData.set(root.get("airlineName"), newName);

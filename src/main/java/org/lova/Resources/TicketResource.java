@@ -19,10 +19,14 @@ public class TicketResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createTicket(TicketCreateDTO ticketCreateDTO){ticketService.createTicket(ticketCreateDTO);}
+    public void createTicket(TicketCreateDTO ticketCreateDTO) {
+        ticketService.createTicket(ticketCreateDTO);
+    }
 
     @GET
     @Path("/getById/{id}")
     @Produces("application/json")
-    public TicketDTO getTicketById(@PathParam("id") Long id){return ticketService.getTicketById(id);}
+    public TicketDTO getTicketById(@PathParam("id") Long id) {
+        return ticketService.getTicketById(id);
+    }
 }

@@ -23,7 +23,7 @@ public class FlightService {
     @Inject
     AirlinesRepository airlinesRepository;
 
-    public void createFlight(FlightDTO flightDTO){
+    public void createFlight(FlightDTO flightDTO) {
         FlightEntity flightEntity = new FlightEntity();
         AirlineEntity airlineEntity = airlinesRepository.getAirlineById(flightDTO.getAirlineId());
         AirportEntity airportArrivalEntity = airportRepository.getAirportById(flightDTO.getArrivalAirportId());
@@ -37,7 +37,7 @@ public class FlightService {
         flightRepository.createFlight(flightEntity);
     }
 
-    public FlightDTO getFlightById(Long flightId){
+    public FlightDTO getFlightById(Long flightId) {
         FlightEntity flightEntity = flightRepository.getFlightById(flightId);
         FlightDTO flightDTO = new FlightDTO();
 
@@ -51,11 +51,20 @@ public class FlightService {
         return flightDTO;
     }
 
-    public void deleteFlight(Long id) {flightRepository.deleteFlight(id);}
+    public void deleteFlight(Long id) {
+        flightRepository.deleteFlight(id);
+    }
 
-    public List<FlightDTO> getFlightsList(){
+    public List<FlightDTO> getFlightsList() {
         List<FlightEntity> flightsList = flightRepository.getFlightsList();
         return flightsList.stream()
-                .map(flightEntity -> {return new FlightDTO(flightEntity.getFlightId(), flightEntity.getDepartureAirport().getAirportId(), flightEntity.getArrivalAirport().getAirportId(), flightEntity.getAirline().getAirlineId(), flightEntity.getDepartureTime(), flightEntity.getArrivalTime());}).toList();
+                .map(flightEntity -> {
+                    return new FlightDTO(flightEntity.getFlightId(),
+                                         flightEntity.getDepartureAirport().getAirportId(),
+                                         flightEntity.getArrivalAirport().getAirportId(),
+                                         flightEntity.getAirline().getAirlineId(),
+                                         flightEntity.getDepartureTime(),
+                                         flightEntity.getArrivalTime());
+                }).toList();
     }
 }

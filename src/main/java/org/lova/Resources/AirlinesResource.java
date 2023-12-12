@@ -26,40 +26,43 @@ public class AirlinesResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createAirlines(AirlinesDTO airlinesDTO){
+    public void createAirlines(AirlinesDTO airlinesDTO) {
         airlinesService.createAirline(airlinesDTO);
     }
 
     @GET
     @Path("/getById/{Id}")
     @Produces("application/json")
-    public AirlinesDTO getById(@PathParam("Id")Long airlineId){ return airlinesService.getAirlineById(airlineId); }
+    public AirlinesDTO getById(@PathParam("Id") Long airlineId) {
+        return airlinesService.getAirlineById(airlineId);
+    }
 
     @DELETE
     @Path("/delete/{Id}")
     @Produces("application/json")
-    public void deleteAirline(@PathParam("Id")Long airlineId){
+    public void deleteAirline(@PathParam("Id") Long airlineId) {
         airlinesService.deleteAirline(airlineId);
     }
 
     @GET
     @Path("/getByName/{airlineName}")
     @Produces("application/json")
-    public AirlinesDTO getByName(@PathParam("airlineName")String airlineName){
+    public AirlinesDTO getByName(@PathParam("airlineName") String airlineName) {
         return airlinesService.getAirlineByName(airlineName);
     }
 
     @PUT
     @Path("/update/{Id}")
     @Consumes("application/json")
-    public void updateAirline(@PathParam("Id")Long Id, AirlineUpdateDTO airlineUpdateDTO){
-        airlinesRepository.updateAirline(airlineUpdateDTO.getOldName(), airlineUpdateDTO.getNewName());
+    public void updateAirline(@PathParam("Id") Long Id, AirlineUpdateDTO airlineUpdateDTO) {
+        airlinesRepository.updateAirline(airlineUpdateDTO.getOldName(),
+                                         airlineUpdateDTO.getNewName());
     }
 
     @GET
     @Path("/getList")
     @Produces("application/json")
-    public List<AirlinesDTO> getAirlinesList(){
+    public List<AirlinesDTO> getAirlinesList() {
         return airlinesService.getAirlinesList();
     }
 

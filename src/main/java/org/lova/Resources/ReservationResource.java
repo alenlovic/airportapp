@@ -23,17 +23,21 @@ public class ReservationResource {
     @POST
     @Path("/create")
     @Consumes("application/json")
-    public void createReservation(ReservationCreateDTO reservationCreateDTO){reservationService.createReservation(reservationCreateDTO);}
+    public void createReservation(ReservationCreateDTO reservationCreateDTO) {
+        reservationService.createReservation(reservationCreateDTO);
+    }
 
     @GET
     @Path("/getById/{id}")
     @Produces("application/json")
-    public ReservationDTO getReservationById(@PathParam("id") Long id){return reservationService.getReservationById(id);}
+    public ReservationDTO getReservationById(@PathParam("id") Long id) {
+        return reservationService.getReservationById(id);
+    }
 
     @PUT
     @Path("/update/{id}")
     @Consumes("application/json")
-    public void updateReservation(@PathParam("id")Long id, ReservationUpdateDTO reservationUpdateDTO){
+    public void updateReservation(@PathParam("id") Long id, ReservationUpdateDTO reservationUpdateDTO) {
         reservationRepository.updateReservation(id, reservationUpdateDTO);
     }
 }

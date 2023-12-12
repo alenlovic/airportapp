@@ -15,13 +15,13 @@ public class AirportService {
     @Inject
     AirportRepository repo;
 
-    public void createAirport(AirportDTO airportDTO){
+    public void createAirport(AirportDTO airportDTO) {
         AirportEntity entity = new AirportEntity();
         entity.setAirportName(airportDTO.getAirportName());
         repo.createAirport(entity);
     }
 
-    public AirportDTO getAirportById(Long airportId){
+    public AirportDTO getAirportById(Long airportId) {
         AirportEntity airport = repo.getAirportById(airportId);
         AirportDTO airportDTO = new AirportDTO();
         airportDTO.setAirportId(airport.getAirportId());
@@ -30,7 +30,7 @@ public class AirportService {
         return airportDTO;
     }
 
-    public AirportDTO getAirportByName(String airportName){
+    public AirportDTO getAirportByName(String airportName) {
         AirportEntity airport = repo.getAirportByName(airportName);
         AirportDTO airportDTO = new AirportDTO();
         airportDTO.setAirportId(airport.getAirportId());
@@ -39,9 +39,12 @@ public class AirportService {
         return airportDTO;
     }
 
-    public List<AirportDTO> getAirportList(){
+    public List<AirportDTO> getAirportList() {
         List<AirportEntity> airportList = repo.getAirportList();
         return airportList.stream()
-                .map(airportEntity -> {return new AirportDTO(airportEntity.getAirportId(), airportEntity.getAirportName());}).toList();
+                .map(airportEntity -> {
+                    return new AirportDTO(airportEntity.getAirportId(),
+                                          airportEntity.getAirportName());
+                }).toList();
     }
 }

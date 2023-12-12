@@ -10,13 +10,14 @@ import org.lova.Models.TicketEntity;
 @ApplicationScoped
 public class TicketRepository implements PanacheRepositoryBase<TicketEntity, Long> {
 
-    public void createTicket(TicketEntity ticketEntity) {getEntityManager().persist(ticketEntity);
+    public void createTicket(TicketEntity ticketEntity) {
+        getEntityManager().persist(ticketEntity);
     }
 
-    public TicketEntity getTicketById(Long id){
+    public TicketEntity getTicketById(Long id) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery <TicketEntity> query = builder.createQuery(TicketEntity.class);
-        Root <TicketEntity> root = query.from(TicketEntity.class);
+        CriteriaQuery<TicketEntity> query = builder.createQuery(TicketEntity.class);
+        Root<TicketEntity> root = query.from(TicketEntity.class);
 
         return getEntityManager().createQuery(query).getSingleResult();
     }

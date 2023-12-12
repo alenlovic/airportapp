@@ -13,7 +13,7 @@ public class PassengerService {
     @Inject
     PassengerRepository repo;
 
-    public void createPassenger(PassengerDTO passengerDTO){
+    public void createPassenger(PassengerDTO passengerDTO) {
         PassengerEntity entity = new PassengerEntity();
         entity.setFirstName(passengerDTO.getFirstName());
         entity.setLastName(passengerDTO.getLastName());
@@ -22,7 +22,7 @@ public class PassengerService {
         repo.createPassenger(entity);
     }
 
-    public PassengerDTO getPassengerById(Long Id){
+    public PassengerDTO getPassengerById(Long Id) {
         PassengerEntity passenger = repo.getPassengerById(Id);
         PassengerDTO passengerDTO = new PassengerDTO();
         passengerDTO.setPassengerId(passenger.getPassengerId());
@@ -34,10 +34,11 @@ public class PassengerService {
         return passengerDTO;
     }
 
-    public void deletePassengerId(Long passengerId){repo.deletePassenger(passengerId);
+    public void deletePassengerId(Long passengerId) {
+        repo.deletePassenger(passengerId);
     }
 
-    public PassengerDTO getPassengerByFirstName(String passengerFirstName){
+    public PassengerDTO getPassengerByFirstName(String passengerFirstName) {
         PassengerEntity passenger = repo.getPassengerByFirstName(passengerFirstName);
         PassengerDTO passengerDTO = new PassengerDTO();
         passengerDTO.setFirstName(passenger.getFirstName());
@@ -48,7 +49,7 @@ public class PassengerService {
         return passengerDTO;
     }
 
-    public PassengerDTO getPassengerByEmailAddress(String email){
+    public PassengerDTO getPassengerByEmailAddress(String email) {
         PassengerEntity passenger = repo.getPassengerByEmailAddress(email);
         PassengerDTO passengerDTO = new PassengerDTO();
         passengerDTO.setFirstName(passenger.getFirstName());
@@ -58,8 +59,6 @@ public class PassengerService {
 
         return passengerDTO;
     }
-
-
 
 
 }

@@ -25,7 +25,7 @@ public class TicketService {
     @Inject
     TicketRepository ticketRepository;
 
-    public void createTicket(TicketCreateDTO ticketCreateDTO){
+    public void createTicket(TicketCreateDTO ticketCreateDTO) {
         TicketEntity ticket = new TicketEntity();
         PassengerEntity passenger = new PassengerEntity();
         ReservationEntity reservation = new ReservationEntity();
@@ -46,7 +46,7 @@ public class TicketService {
         reservationRepository.createReservation(reservation);
     }
 
-    public TicketDTO getTicketById(Long id){
+    public TicketDTO getTicketById(Long id) {
         TicketEntity ticket = ticketRepository.getTicketById(id);
         TicketDTO ticketDTO = new TicketDTO();
         ticketDTO.setSeatNumber(ticket.getSeatNumber());
