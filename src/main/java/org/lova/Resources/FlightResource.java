@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import org.lova.DTO.FlightDTO;
+import org.lova.DTO.FlightUpdateDTO;
 import org.lova.Models.FlightEntity;
 import org.lova.Repositories.FlightRepository;
 import org.lova.Services.FlightService;
@@ -17,6 +18,8 @@ import java.util.List;
 public class FlightResource {
     @Inject
     FlightService flightService;
+    @Inject
+    FlightRepository flightRepository;
 
     @POST
     @Path("/create")
@@ -44,5 +47,12 @@ public class FlightResource {
     @Consumes("application/json")
     public void deleteFlight(@PathParam("id") Long id) {
         flightService.deleteFlight(id);
+    }
+
+    @PUT
+    @Path("/updateFlight/{id}")
+    @Produces("application/json")
+    public void updateFlight(@PathParam("id") Long id, FlightUpdateDTO flightUpdateDTO){
+        flightRepository.updateFlight(id, flightUpdateDTO);
     }
 }

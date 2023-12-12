@@ -2,10 +2,9 @@ package org.lova.Repositories;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaDelete;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
+import org.lova.DTO.FlightDTO;
+import org.lova.DTO.FlightUpdateDTO;
 import org.lova.Models.FlightEntity;
 
 import java.util.List;
@@ -41,6 +40,24 @@ public class FlightRepository implements PanacheRepositoryBase<FlightEntity, Lon
         delete.where(builder.equal(root.get("id"), id));
 
         getEntityManager().createQuery(delete).executeUpdate();
+    }
+
+    public void updateFlight(Long id, FlightUpdateDTO flightUpdateDTO){
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaUpdate <FlightEntity> update = builder.createCriteriaUpdate(FlightEntity.class);
+        Root<FlightEntity> root = update.from(FlightEntity.class);
+
+        update.where(builder.equal(root.get("flightId"), id));
+
+        if (flightUpdateDTO.getOldDepartureTime() != null) {
+            update.set(root.get("departureTime"), flightUpdateDTO.getNewDepartureTime());
+        }
+
+        if (flightUpdateDTO.getOldArrivalTime() != null) {
+            update.set(root.get("arrivalTime"), flightUpdateDTO.getNewArrivalTime());
+        }
+
+        getEntityManager().createQuery(update).executeUpdate();
     }
 
 }
