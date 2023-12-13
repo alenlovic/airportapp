@@ -6,6 +6,8 @@ import jakarta.persistence.criteria.*;
 import org.lova.DTO.PassengerUpdateDTO;
 import org.lova.Models.PassengerEntity;
 
+import java.util.List;
+
 
 @ApplicationScoped
 public class PassengerRepository implements PanacheRepositoryBase<PassengerEntity, Long> {
@@ -79,5 +81,13 @@ public class PassengerRepository implements PanacheRepositoryBase<PassengerEntit
         }
 
         getEntityManager().createQuery(criteriaUpdate).executeUpdate();
+    }
+
+    public List<PassengerEntity> getPassengerList(){
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery <PassengerEntity> query = builder.createQuery(PassengerEntity.class);
+        query.from(PassengerEntity.class);
+
+        return getEntityManager().createQuery(query).getResultList();
     }
 }

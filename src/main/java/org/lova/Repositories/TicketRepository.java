@@ -7,6 +7,8 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.lova.Models.TicketEntity;
 
+import java.util.List;
+
 @ApplicationScoped
 public class TicketRepository implements PanacheRepositoryBase<TicketEntity, Long> {
 
@@ -21,4 +23,14 @@ public class TicketRepository implements PanacheRepositoryBase<TicketEntity, Lon
 
         return getEntityManager().createQuery(query).getSingleResult();
     }
+
+    public List<TicketEntity> getTicketList() {
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery <TicketEntity> query = builder.createQuery(TicketEntity.class);
+        Root<TicketEntity> root = query.from(TicketEntity.class);
+
+        return getEntityManager().createQuery(query).getResultList();
+    }
+
+
 }

@@ -7,6 +7,8 @@ import org.lova.Models.AirlineEntity;
 import org.lova.Models.PassengerEntity;
 import org.lova.Repositories.PassengerRepository;
 
+import java.util.List;
+
 @ApplicationScoped
 public class PassengerService {
 
@@ -60,5 +62,15 @@ public class PassengerService {
         return passengerDTO;
     }
 
-
+    public List<PassengerDTO> getPassengerList(){
+        List<PassengerEntity> passenger = repo.getPassengerList();
+        return passenger.stream().map(passengerEntity -> {
+            return new PassengerDTO(
+                    passengerEntity.getPassengerId(),
+                    passengerEntity.getFirstName(),
+                    passengerEntity.getLastName(),
+                    passengerEntity.getEmail(),
+                    passengerEntity.getPhoneNumber());
+        }).toList();
+    }
 }

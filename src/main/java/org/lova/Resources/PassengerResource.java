@@ -9,6 +9,8 @@ import org.lova.DTO.PassengerUpdateDTO;
 import org.lova.Repositories.PassengerRepository;
 import org.lova.Services.PassengerService;
 
+import java.util.List;
+
 @ApplicationScoped
 @Path("/passenger")
 @Transactional
@@ -59,6 +61,13 @@ public class PassengerResource {
     @Consumes("application/json")
     public void updatePassenger(@PathParam("id") Long id, PassengerUpdateDTO passengerUpdateDTO) {
         passengerRepository.updatePassenger(id, passengerUpdateDTO);
+    }
+
+    @GET
+    @Path("/getPassengerList")
+    @Consumes("application/json")
+    public List<PassengerDTO> getPassengerList(PassengerDTO passengerDTO){
+        return passengerService.getPassengerList();
     }
 
 

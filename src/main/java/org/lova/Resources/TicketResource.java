@@ -8,6 +8,8 @@ import org.lova.DTO.TicketCreateDTO;
 import org.lova.DTO.TicketDTO;
 import org.lova.Services.TicketService;
 
+import java.util.List;
+
 @Transactional
 @ApplicationScoped
 @Path("/ticket")
@@ -28,5 +30,12 @@ public class TicketResource {
     @Produces("application/json")
     public TicketDTO getTicketById(@PathParam("id") Long id) {
         return ticketService.getTicketById(id);
+    }
+
+    @GET
+    @Path("/getTicketList")
+    @Consumes("application/json")
+    public List<TicketCreateDTO> getTicketList(TicketCreateDTO ticketCreateDTO) {
+        return ticketService.getTicketList();
     }
 }

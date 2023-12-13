@@ -2,6 +2,7 @@ package org.lova.Services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.lova.DTO.FlightDTO;
 import org.lova.DTO.TicketCreateDTO;
 import org.lova.DTO.TicketDTO;
 import org.lova.Models.FlightEntity;
@@ -12,6 +13,8 @@ import org.lova.Repositories.FlightRepository;
 import org.lova.Repositories.PassengerRepository;
 import org.lova.Repositories.ReservationRepository;
 import org.lova.Repositories.TicketRepository;
+
+import java.util.List;
 
 @ApplicationScoped
 public class TicketService {
@@ -53,5 +56,20 @@ public class TicketService {
         ticketDTO.setTicketPrice(ticket.getTicketPrice());
         ticketDTO.setPurchaseDate(ticket.getPurchaseDate());
         return ticketDTO;
+    }
+
+    public List<TicketCreateDTO> getTicketList() {
+        List<TicketEntity> ticketList = ticketRepository.getTicketList();
+        return ticketList.stream().map(ticketEntity -> {
+            return new TicketCreateDTO(
+                    ticketEntity.getPassenger().getFirstName(),
+                    ticketEntity.getPassenger().getLastName(),
+                    ticketEntity.getSeatNumber(),
+                    ticketEntity.getTicketPrice(),
+                    ticketEntity.getPurchaseDate(),
+                    ticketEntity.getFlight().getFlightId(),
+                    ticketEntity.getReservation().getReservationDateFrom(),
+                    ticketEntity.getReservation().getReservationDateTo());
+        }).toList();
     }
 }
