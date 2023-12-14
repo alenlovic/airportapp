@@ -75,14 +75,14 @@
     </changeSet>
 
     <!-- Reservations Table -->
-    <changeSet id="createReservationsTables" author="alen">
+    <changeSet id="createReservationsTabless" author="alen">
         <createTable tableName="reservations">
             <!-- Define columns for the reservations table -->
             <column name="reservation_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="ticket_id" type="BIGINT">
-                <constraints foreignKeyName="fk_reservation_ticket" references="tickets(ticket_id)" nullable="false"/>
+                <constraints foreignKeyName="fk_reservation_ticket" references="tickets(ticket_id)"/>
             </column>
             <column name="reservation_date_from" type="TIMESTAMP"/>
             <column name="reservation_date_to" type="TIMESTAMP"/>

@@ -26,26 +26,23 @@ public class ReservationService {
 
     public void createReservation(ReservationCreateDTO reservationCreateDTO) {
         ReservationEntity reservation = new ReservationEntity();
-        TicketEntity ticket = new TicketEntity();
-        PassengerEntity passenger = new PassengerEntity();
         FlightEntity flight = flightRepo.getFlightById(reservationCreateDTO.getFlightId());
-        reservation.setReservationDateFrom(reservationCreateDTO.getReservationDateFrom());
-        reservation.setReservationDateTo(reservationCreateDTO.getReservationDateTo());
+        PassengerEntity passenger = passengerRepo.getPassengerById(reservationCreateDTO.getPassengerId());
+
+        TicketEntity ticket = new TicketEntity();
+
+        ticket.setFlight(flight);
         ticket.setSeatNumber(reservationCreateDTO.getSeatNumber());
         ticket.setTicketPrice(reservationCreateDTO.getTicketPrice());
         ticket.setPurchaseDate(reservationCreateDTO.getPurchaseDate());
-        passenger.setFirstName(reservationCreateDTO.getFirstName());
-        passenger.setLastName(reservationCreateDTO.getLastName());
-        passenger.setEmail(reservationCreateDTO.getEmail());
-        passenger.setPhoneNumber(reservationCreateDTO.getPhoneNumber());
-
-        passengerRepo.createPassenger(passenger);
         ticket.setPassenger(passenger);
-        ticket.setFlight(flight);
         ticket.setReservation(reservation);
-        ticketRepo.createTicket(ticket);
-        reservation.getTickets().add(ticket);
+
+        reservation.setReservationDateFrom(reservationCreateDTO.getReservationDateFrom());
+        reservation.setReservationDateTo(reservationCreateDTO.getReservationDateTo());
+
         reservationRepo.createReservation(reservation);
+        ticketRepo.createTicket(ticket);
     }
 
     public ReservationDTO getReservationById(Long id) {
