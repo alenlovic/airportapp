@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Table(name = "tickets")
 @Entity
@@ -47,5 +47,5 @@ public class TicketEntity {
 
     @NotNull
     @Column(name = "purchase_date")
-    private Timestamp purchaseDate;
+    private LocalDateTime purchaseDate;
 }

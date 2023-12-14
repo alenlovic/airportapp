@@ -3,7 +3,6 @@ package org.lova.Services;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.lova.DTO.PassengerDTO;
-import org.lova.Models.AirlineEntity;
 import org.lova.Models.PassengerEntity;
 import org.lova.Repositories.PassengerRepository;
 

@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import org.lova.DTO.FlightDTO;
 import org.lova.DTO.FlightUpdateDTO;
-import org.lova.Models.FlightEntity;
 import org.lova.Repositories.FlightRepository;
 import org.lova.Services.FlightService;
 

@@ -2,7 +2,6 @@ package org.lova.Services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.lova.DTO.FlightDTO;
 import org.lova.DTO.TicketCreateDTO;
 import org.lova.DTO.TicketDTO;
 import org.lova.Models.FlightEntity;

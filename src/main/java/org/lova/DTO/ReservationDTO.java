@@ -3,15 +3,14 @@ package org.lova.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.lova.Models.TicketEntity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationDTO {
     private Long reservationId;
-    private Timestamp reservationDateFrom;
-    private Timestamp reservationDateTo;
+    private LocalDateTime reservationDateFrom;
+    private LocalDateTime reservationDateTo;
 }

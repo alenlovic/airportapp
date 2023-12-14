@@ -4,11 +4,16 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.lova.DTO.ReservationCreateDTO;
 import org.lova.DTO.ReservationDTO;
 import org.lova.DTO.ReservationUpdateDTO;
 import org.lova.Repositories.ReservationRepository;
 import org.lova.Services.ReservationService;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 @ApplicationScoped
 @Path("/reservation")

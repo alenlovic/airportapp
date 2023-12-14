@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -14,8 +14,8 @@ public class TicketCreateDTO {
     private String lastName;
     private String seatNumber;
     private String ticketPrice;
-    private Timestamp purchaseDate;
+    private LocalDateTime purchaseDate;
     private Long flightId;
-    private Timestamp reservationDateFrom;
-    private Timestamp reservationDateTo;
+    private LocalDateTime reservationDateFrom;
+    private LocalDateTime reservationDateTo;
 }

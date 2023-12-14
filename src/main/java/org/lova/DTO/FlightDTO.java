@@ -3,11 +3,8 @@ package org.lova.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.lova.Models.AirlineEntity;
-import org.lova.Models.AirportEntity;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +14,6 @@ public class FlightDTO {
     private Long departureAirportId;
     private Long arrivalAirportId;
     private Long airlineId;
-    private Timestamp departureTime;
-    private Timestamp arrivalTime;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
 }

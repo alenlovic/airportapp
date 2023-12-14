@@ -1,11 +1,14 @@
 package org.lova.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.lova.Models.FlightEntity;
+import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationCreateDTO {
     private String firstName;
     private String lastName;
@@ -14,8 +17,8 @@ public class ReservationCreateDTO {
     private String seatNumber;
     private String ticketPrice;
     private String paymentMethod;
-    private Timestamp purchaseDate;
+    private LocalDateTime purchaseDate;
     private Long flightId;
-    private Timestamp reservationDateFrom;
-    private Timestamp reservationDateTo;
+    private LocalDateTime reservationDateFrom;
+    private LocalDateTime reservationDateTo;
 }

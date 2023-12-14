@@ -2,7 +2,6 @@ package org.lova.Services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.lova.DTO.AirlinesDTO;
 import org.lova.DTO.AirportDTO;
 import org.lova.Models.AirportEntity;
 import org.lova.Repositories.AirportRepository;

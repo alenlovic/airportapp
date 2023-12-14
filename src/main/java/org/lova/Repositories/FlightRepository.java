@@ -3,7 +3,6 @@ package org.lova.Repositories;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.criteria.*;
-import org.lova.DTO.FlightDTO;
 import org.lova.DTO.FlightUpdateDTO;
 import org.lova.Models.FlightEntity;
 

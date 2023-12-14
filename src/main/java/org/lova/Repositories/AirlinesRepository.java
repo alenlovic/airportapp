@@ -2,12 +2,8 @@ package org.lova.Repositories;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.lova.DTO.AirlinesDTO;
+
 import org.lova.Models.AirlineEntity;
 
 import java.util.List;

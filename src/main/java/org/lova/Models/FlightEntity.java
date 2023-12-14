@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Table(name = "flights")
 @Entity
@@ -33,11 +33,11 @@ public class FlightEntity {
 
     @NotNull
     @Column(name = "departure_time")
-    private Timestamp departureTime;
+    private LocalDateTime departureTime;
 
     @NotNull
     @Column(name = "arrival_time")
-    private Timestamp arrivalTime;
+    private LocalDateTime arrivalTime;
 
     @NotNull
     @ManyToOne

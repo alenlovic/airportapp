@@ -80,6 +80,11 @@
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.glassfish.expressly</groupId>
+          <artifactId>expressly</artifactId>
+          <version>5.0.0</version>
+      </dependency>
   </dependencies>
   <build>
     <plugins>

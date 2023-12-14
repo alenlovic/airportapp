@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Table(name = "payments")
 @Entity
@@ -29,7 +29,7 @@ public class PaymentEntity {
 
     @NotNull
     @Column(name = "payment_date")
-    private Timestamp paymentDate;
+    private LocalDateTime paymentDate;
 
     @NotNull
     @Column(name = "payment_amount")

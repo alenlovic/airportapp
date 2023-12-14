@@ -6,9 +6,7 @@ import org.lova.DTO.AirlinesDTO;
 import org.lova.Models.AirlineEntity;
 import org.lova.Repositories.AirlinesRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class AirlinesService {

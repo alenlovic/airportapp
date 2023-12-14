@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +31,9 @@ public class ReservationEntity {
 
     @NotNull
     @Column(name = "reservation_date_from")
-    private Timestamp reservationDateFrom;
+    private LocalDateTime reservationDateFrom;
 
     @NotNull
     @Column(name = "reservation_date_to")
-    private Timestamp reservationDateTo;
+    private LocalDateTime reservationDateTo;
 }
