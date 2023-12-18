@@ -12,6 +12,7 @@ import org.lova.Repositories.FlightRepository;
 import org.lova.Repositories.PassengerRepository;
 import org.lova.Repositories.ReservationRepository;
 import org.lova.Repositories.TicketRepository;
+import org.lova.kafka.KafkaReservationProd;
 
 @ApplicationScoped
 public class ReservationService {
@@ -43,6 +44,9 @@ public class ReservationService {
 
         reservationRepo.createReservation(reservation);
         ticketRepo.createTicket(ticket);
+
+        KafkaReservationProd slanje = new KafkaReservationProd();
+        slanje.produceReservation(reservationCreateDTO);
     }
 
     public ReservationDTO getReservationById(Long id) {
