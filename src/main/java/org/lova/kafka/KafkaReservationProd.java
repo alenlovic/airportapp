@@ -29,11 +29,9 @@ public class KafkaReservationProd {
 
     public void produceReservation(ReservationCreateDTO reservationDTO) {
 
-        // Produce the reservation message
         String topic = "reservation-topic";
         ProducerRecord<String, ReservationCreateDTO> record = new ProducerRecord<>(topic, reservationDTO);
 
-        // Send the message
         producer.send(record);
     }
 
