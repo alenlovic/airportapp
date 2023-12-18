@@ -45,8 +45,8 @@ public class ReservationService {
         reservationRepo.createReservation(reservation);
         ticketRepo.createTicket(ticket);
 
-        KafkaReservationProd slanje = new KafkaReservationProd();
-        slanje.produceReservation(reservationCreateDTO);
+        KafkaReservationProd sendData = new KafkaReservationProd();
+        sendData.produceReservation(reservationCreateDTO);
     }
 
     public ReservationDTO getReservationById(Long id) {
