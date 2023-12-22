@@ -25,6 +25,9 @@ public class ReservationService {
     @Inject
     TicketRepository ticketRepo;
 
+    @Inject
+    KafkaReservationProd kafkaReservationProd;
+
     public void createReservation(ReservationCreateDTO reservationCreateDTO) {
         ReservationEntity reservation = new ReservationEntity();
         FlightEntity flight = flightRepo.getFlightById(reservationCreateDTO.getFlightId());
@@ -45,8 +48,9 @@ public class ReservationService {
         reservationRepo.createReservation(reservation);
         ticketRepo.createTicket(ticket);
 
-        KafkaReservationProd sendData = new KafkaReservationProd();
-        sendData.produceReservation(reservationCreateDTO);
+        kafkaReservationProd.produceReservation(reservationCreateDTO);
+//        KafkaReservationProd sendData = new KafkaReservationProd();
+//        sendData.produceReservation(reservationCreateDTO);
     }
 
     public ReservationDTO getReservationById(Long id) {
