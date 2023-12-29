@@ -14,6 +14,9 @@ import org.lova.Repositories.ReservationRepository;
 import org.lova.Repositories.TicketRepository;
 import org.lova.kafka.KafkaReservationProd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ApplicationScoped
 public class ReservationService {
     @Inject
@@ -49,8 +52,6 @@ public class ReservationService {
         ticketRepo.createTicket(ticket);
 
         kafkaReservationProd.produceReservation(reservationCreateDTO);
-//        KafkaReservationProd sendData = new KafkaReservationProd();
-//        sendData.produceReservation(reservationCreateDTO);
     }
 
     public ReservationDTO getReservationById(Long id) {
@@ -60,6 +61,4 @@ public class ReservationService {
         reservationDTO.setReservationDateTo(reservation.getReservationDateTo());
         return reservationDTO;
     }
-
-
 }

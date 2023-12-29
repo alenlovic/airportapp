@@ -9,6 +9,8 @@ import jakarta.persistence.criteria.Root;
 import org.lova.DTO.ReservationUpdateDTO;
 import org.lova.Models.ReservationEntity;
 
+import java.util.List;
+
 
 @ApplicationScoped
 public class ReservationRepository implements PanacheRepositoryBase<ReservationEntity, Long> {

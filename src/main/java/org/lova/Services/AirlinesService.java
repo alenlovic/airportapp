@@ -53,11 +53,4 @@ public class AirlinesService {
                 }).toList();
 
     }
-
-    //stream api
-    //method references
-    //lambda functions
-    //Optional...
-
-
 }
